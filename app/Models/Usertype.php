@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Usertype extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'usertype_name'
+    ];
 }

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Subscriptiontype extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'subtype_name',
+    ];
 }
