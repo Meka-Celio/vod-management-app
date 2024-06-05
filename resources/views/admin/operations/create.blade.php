@@ -5,7 +5,7 @@
 <form action="{{ route('operations.store') }}" method="post">
     @csrf
     <p>
-        <input type="text" name="operation_name" id="operation_name">
+        <input type="text" name="name" id="name">
     </p>
     <p>
         <button>Ajouter</button>

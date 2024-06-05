@@ -13,6 +13,7 @@
             <th>Nom de l'opération</th>
             <th>Créé le</th>
             <th>Date de modification</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +24,7 @@
                 {{ $ope->id }}
             </td>
             <td>
-                {{ $ope->operation_name }}
+                {{ $ope->name }}
             </td>
             <td>
                 {{ $ope->created_at }}
@@ -31,7 +32,9 @@
             <td>
                 {{ $ope->updated_at }}
             </td>
-
+            <td>
+                <a href="{{ route('operations.show', $ope->id) }}">Détail</a>
+            </td>
         </tr>
         @endforeach
     </tbody>

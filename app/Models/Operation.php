@@ -10,6 +10,6 @@ class Operation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'operation_name'
+        'name'
     ];
 }

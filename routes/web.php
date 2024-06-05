@@ -6,6 +6,7 @@ use App\Http\Controllers\AccountRentalMovieController;
 use App\Http\Controllers\AccountSubscriptionController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\OperationController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsertypeController;
@@ -43,6 +44,19 @@ Route::resource('subscriptions', SubscriptionController::class)->names([
     'destroy' => 'subscriptions.destroy',
     'update' => 'subscriptions.update',
     'show' => 'subscriptions.show'
+]);
+
+/**
+ * Les routes pour les Status
+ */
+Route::resource('status', StatusController::class)->names([
+    'index' => 'status.index',
+    'create' => 'status.create',
+    'store' => 'status.store',
+    'edit' => 'status.edit',
+    'destroy' => 'status.destroy',
+    'update' => 'status.update',
+    'show' => 'status.show'
 ]);
 
 /**

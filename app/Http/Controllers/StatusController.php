@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Operation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-
-class OperationController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $operations = Operation::all();
-        return view('admin.operations.index', ['operations' => $operations, 'title' => 'Toutes les opérations']);
+        echo "Status.index";
     }
 
     /**
@@ -23,7 +19,7 @@ class OperationController extends Controller
      */
     public function create()
     {
-        return view('admin.operations.create', ['title' => 'Ajout d\'une opération']);
+        //
     }
 
     /**
@@ -31,15 +27,7 @@ class OperationController extends Controller
      */
     public function store(Request $request)
     {
-        $operation = new Operation;
-        $operation->name = $request->input('name');
-        $operation->name = Str::lower($operation->name);
-
-        die();
-        // $operation->save();
-
-        //Redirection vers la view index du dossier categories
-        return redirect()->route('operations.index');
+        //
     }
 
     /**
@@ -47,8 +35,7 @@ class OperationController extends Controller
      */
     public function show(string $id)
     {
-        $operation = Operation::find($id);
-        return view('admin.operations.show', ['title' => 'Voir une opération', 'operation' => $operation]);
+        //
     }
 
     /**
@@ -64,9 +51,7 @@ class OperationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $operation = Operation::find($id);
-        var_dump($operation);
-        die();
+        //
     }
 
     /**
