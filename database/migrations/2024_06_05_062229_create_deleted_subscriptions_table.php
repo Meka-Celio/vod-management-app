@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('operationtypes', function (Blueprint $table) {
+        Schema::create('deleted_subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('operation_name',  100);
+            $table->string('name', 100)->unique();
+            $table->float('price');
+            $table->integer('duration');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('operationtypes');
+        Schema::dropIfExists('deleted_subscriptions');
     }
 };

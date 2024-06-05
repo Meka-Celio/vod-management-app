@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accountsubscription', function (Blueprint $table) {
+        Schema::create('account_subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('start_sub');
-            $table->dateTime('end_sub');
+            $table->string('num_account', 100)->unique();
             $table->UnsignedBigInteger('account_id'); //le champ
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->UnsignedBigInteger('sub_id'); //le champ
             $table->foreign('sub_id')->references('id')->on('subscriptions');
+            $table->UnsignedBigInteger('status_id'); //le champ
+            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->dateTime('start_sub');
+            $table->dateTime('end_sub');
             $table->timestamps();
         });
     }

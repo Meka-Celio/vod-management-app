@@ -5,9 +5,8 @@ use App\Http\Controllers\AccountPurchaseMovieController;
 use App\Http\Controllers\AccountRentalMovieController;
 use App\Http\Controllers\AccountSubscriptionController;
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\OperationtypeController;
+use App\Http\Controllers\OperationController;
 use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\SubscriptiontypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsertypeController;
 use Illuminate\Support\Facades\Route;
@@ -16,30 +15,21 @@ Route::get('/', function () {
     return view('index');
 });
 
-/**
- * Les routes pour les Operationstypes
- */
-Route::resource('operationtypes', OperationtypeController::class)->names([
-    'index' => 'operationtypes.index',
-    'create' => 'operationtypes.create',
-    'store' => 'operationtypes.store',
-    'edit' => 'operationtypes.edit',
-    'destroy' => 'operationtypes.destroy',
-    'update' => 'operationtypes.update',
-    'show' => 'operationtypes.show'
-]);
+Route::get('/admin', function () {
+    return view('admin/index', ['title' => "Accueil"]);
+});
 
 /**
- * Les routes pour les Subscriptionstypes
+ * Les routes pour les Operations
  */
-Route::resource('subtypes', SubscriptiontypeController::class)->names([
-    'index' => 'subtypes.index',
-    'create' => 'subtypes.create',
-    'store' => 'subtypes.store',
-    'edit' => 'subtypes.edit',
-    'destroy' => 'subtypes.destroy',
-    'update' => 'subtypes.update',
-    'show' => 'subtypes.show'
+Route::resource('operations', OperationController::class)->names([
+    'index' => 'operations.index',
+    'create' => 'operations.create',
+    'store' => 'operations.store',
+    'edit' => 'operations.edit',
+    'destroy' => 'operations.destroy',
+    'update' => 'operations.update',
+    'show' => 'operations.show'
 ]);
 
 /**

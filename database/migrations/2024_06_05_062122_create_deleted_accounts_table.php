@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subscriptiontypes', function (Blueprint $table) {
+        Schema::create('deleted_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('subtype_name', 100);
+            $table->string('num_account', 255)->unique();
+            $table->UnsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subscriptiontypes');
+        Schema::dropIfExists('deleted_accounts');
     }
 };

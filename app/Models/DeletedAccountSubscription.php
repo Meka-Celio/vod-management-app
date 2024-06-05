@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class AccountRentalMovie extends Model
+class DeletedAccountSubscription extends Model
 {
     use HasFactory;
 
@@ -15,21 +15,20 @@ class AccountRentalMovie extends Model
         return $this->hasOne(Account::class);
     }
 
-    public function movie(): HasOne
+    public function subscription(): HasOne
     {
-        return $this->hasOne(Movie::class);
+        return $this->hasOne(Subscription::class);
     }
 
-    public function operation(): HasOne
+    public function status(): HasOne
     {
-        return $this->hasOne(Operation::class);
+        return $this->hasOne(Status::class);
     }
 
     protected $fillable = [
-        'start_rental',
-        'end_rental',
+        'start_sub',
+        'end_sub',
         'account_id',
-        'movie_id',
-        'operation_id'
+        'sub_id'
     ];
 }

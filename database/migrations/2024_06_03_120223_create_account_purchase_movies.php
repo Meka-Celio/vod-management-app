@@ -18,7 +18,7 @@ return new class extends Migration
             $table->UnsignedBigInteger('movie_id'); //le champ
             $table->foreign('movie_id')->references('id')->on('movies');
             $table->UnsignedBigInteger('operation_id'); //le champ
-            $table->foreign('operation_id')->references('id')->on('operationtypes');
+            $table->foreign('operation_id')->references('id')->on('operations');
             $table->timestamps();
         });
     }

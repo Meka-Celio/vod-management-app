@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class AccountRentalMovie extends Model
+class DeletedAccountPurchaseMovie extends Model
 {
     use HasFactory;
 
@@ -26,8 +26,6 @@ class AccountRentalMovie extends Model
     }
 
     protected $fillable = [
-        'start_rental',
-        'end_rental',
         'account_id',
         'movie_id',
         'operation_id'

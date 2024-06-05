@@ -20,10 +20,17 @@ class AccountSubscription extends Model
         return $this->hasOne(Subscription::class);
     }
 
+    public function status(): HasOne
+    {
+        return $this->hasOne(Status::class);
+    }
+
     protected $fillable = [
-        'start_sub',
-        'end_sub',
+        'num_account',
         'account_id',
-        'sub_id'
+        'sub_id',
+        'status_id',
+        'start_sub',
+        'end_sub'
     ];
 }

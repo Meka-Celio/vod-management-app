@@ -20,9 +20,9 @@ class AccountPurchaseMovie extends Model
         return $this->hasOne(Movie::class);
     }
 
-    public function operationtype(): HasOne
+    public function operation(): HasOne
     {
-        return $this->hasOne(Operationtype::class);
+        return $this->hasOne(Operation::class);
     }
 
     protected $fillable = [

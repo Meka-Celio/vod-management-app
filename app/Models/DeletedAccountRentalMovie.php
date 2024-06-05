@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class AccountRentalMovie extends Model
+class DeletedAccountRentalMovie extends Model
 {
     use HasFactory;
 
