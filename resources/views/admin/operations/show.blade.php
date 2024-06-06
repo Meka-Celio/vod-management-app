@@ -24,8 +24,8 @@
                 {{ $operation->updated_at }}
             </td>
         </tr>
-        <tr>
-            <td><a href="{{ route('operations.index') }}">Les opérations</a></td>
-        </tr>
     </tbody>
 </table>
+<p>
+    <a href="{{ route('operations.index') }}">Les opérations</a>
+</p>

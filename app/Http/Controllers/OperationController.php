@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Operation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 
@@ -15,7 +16,17 @@ class OperationController extends Controller
     public function index()
     {
         $operations = Operation::all();
-        return view('admin.operations.index', ['operations' => $operations, 'title' => 'Toutes les opérations']);
+
+        $state = "";
+        $msg = "";
+
+        // Variales d'etats reçu des différentes fonctions
+        if (Session::get('state')) {
+            $state = Session::get('state');
+            $msg = Session::get('msg');
+        }
+
+        return view('admin.operations.index', ['operations' => $operations, 'title' => 'Toutes les opérations', 'state' => $state, 'msg' => $msg]);
     }
 
     /**
@@ -32,14 +43,24 @@ class OperationController extends Controller
     public function store(Request $request)
     {
         $operation = new Operation;
-        $operation->name = $request->input('name');
-        $operation->name = Str::lower($operation->name);
 
-        die();
-        // $operation->save();
+        // Variables d'etats à envoyer par la fonction redirect
+        $state = "";
+        $msg = "";
 
-        //Redirection vers la view index du dossier categories
-        return redirect()->route('operations.index');
+        if ($request->input('name') != "") {
+            $operation->name = $request->input('name');
+            $operation->name = Str::lower($operation->name);
+            $operation->save();
+            $state = "ok";
+            $msg = "Element ajouté avec succès !";
+        } else {
+            $state = "ko";
+            $msg = "Echec lors de l'ajout, le nom ne doit pas être vide !";
+        }
+
+        // Redirection vers la view index du dossier opérations
+        return redirect()->route('operations.index')->with('state', $state)->with('msg', $msg);
     }
 
     /**
@@ -56,7 +77,8 @@ class OperationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $operation = Operation::find($id);
+        return view('admin.operations.edit', ['title' => 'Modifier une opération', 'operation' => $operation]);
     }
 
     /**
@@ -64,9 +86,29 @@ class OperationController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // Rechercher un element
         $operation = Operation::find($id);
-        var_dump($operation);
-        die();
+
+        // Variables d'etats à envoyer par la fonction redirect
+        $state = "";
+        $msg = "";
+        // If 'name != ""
+        if ($request->input('name') != "") {
+            $operation->name = $request->input('name');
+            $operation->name = Str::lower($operation->name);
+            // Modifier un element
+            $operation->save();
+            // Update state & msg
+            $state = "ok";
+            $msg = "Element mise à jour avec succès !";
+        } else {
+            // Update state & msg
+            $state = "ko";
+            $msg = "Elément non mise à jour !";
+        }
+
+        // Redirection vers la view index du dossier opérations
+        return redirect()->route('operations.index')->with('state', $state)->with('msg', $msg);
     }
 
     /**
@@ -74,6 +116,24 @@ class OperationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Rechercher un element
+        $record = Operation::find($id);
+        // Ajouter un element a la table deleted_{table}
+        $item = new Operation;
+        $item->name = $record->name;
+        $item->save();
+        // Variables d'etats à envoyer par la fonction redirect
+        $state = "";
+        $msg = "";
+        // Supprimer un element
+        dd($record);
+        if ($record) {
+            $record->delete();
+            $state = "ok";
+            $msg = "Element supprimé avec succès !";
+        }
+
+        // Redirection vers la view index du dossier opérations
+        return redirect()->route('operations.index')->with('state', $state)->with('msg', $msg);
     }
 }
