@@ -1,4 +1,4 @@
-@extends('admin/layouts/layout')
+@extends('dashboard/layouts/layout')
 
 @section('content')
 
@@ -46,11 +46,26 @@
                 <a href="{{ route('operations.edit', $ope->id) }}">Modifier</a>
             </td>
             <td>
-                <a href="{{ route('operations.destroy', $ope->id) }}">Supprimer</a>
+                <form action="{{ route('operations.destroy', $ope->id) }}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="delete_item" data-id="{{ $ope->id }}">Supprimer</button>
+                </form>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
-
+<!-- Script pour la suppression -->
+<script>
+    let delete_item_forms = document.querySelectorAll('form')
+    for (let i = 0; i < delete_item_forms.length; i++) {
+        delete_item_forms[i].addEventListener('submit', (event) => {
+            let confirm_delete = confirm("Voulez-vous supprimer cet élément ?")
+            if (!confirm_delete) {
+                event.preventDefault()
+            }
+        })
+    }
+</script>
 @endsection

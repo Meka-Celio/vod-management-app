@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ====================================================== */
+/* General Classes  */
+.bg-vod-warning {
+    background-image: linear-gradient(180deg, #f6c23e 10%, #e9b83b 100%);
+}
+/* End classes */
+/* ====================================================== */
+
+#wrapper {
+    display: flex;
+    height: 100%;
+}
+
+aside {
+    height: 100%;
+}

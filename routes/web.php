@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountPurchaseMovieController;
 use App\Http\Controllers\AccountRentalMovieController;
 use App\Http\Controllers\AccountSubscriptionController;
+use App\Http\Controllers\DashController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\StatusController;
@@ -16,9 +17,11 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/admin', function () {
-    return view('admin/index', ['title' => "Accueil"]);
-});
+// Route::get('/back', function () {
+//     return view('back/index', ['title' => "Accueil"]);
+// });
+
+Route::get('back', [DashController::class, 'index']);
 
 /**
  * Les routes pour les Operations

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Operation;
+use App\Models\DeletedOperation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -25,7 +26,7 @@ class OperationController extends Controller
             $state = Session::get('state');
             $msg = Session::get('msg');
         }
-
+        // Return the 
         return view('admin.operations.index', ['operations' => $operations, 'title' => 'Toutes les opérations', 'state' => $state, 'msg' => $msg]);
     }
 
@@ -34,6 +35,7 @@ class OperationController extends Controller
      */
     public function create()
     {
+        // Go to create element page
         return view('admin.operations.create', ['title' => 'Ajout d\'une opération']);
     }
 
@@ -42,12 +44,12 @@ class OperationController extends Controller
      */
     public function store(Request $request)
     {
+        // Create new element
         $operation = new Operation;
-
         // Variables d'etats à envoyer par la fonction redirect
         $state = "";
         $msg = "";
-
+        // if input != ""
         if ($request->input('name') != "") {
             $operation->name = $request->input('name');
             $operation->name = Str::lower($operation->name);
@@ -58,7 +60,6 @@ class OperationController extends Controller
             $state = "ko";
             $msg = "Echec lors de l'ajout, le nom ne doit pas être vide !";
         }
-
         // Redirection vers la view index du dossier opérations
         return redirect()->route('operations.index')->with('state', $state)->with('msg', $msg);
     }
@@ -68,6 +69,7 @@ class OperationController extends Controller
      */
     public function show(string $id)
     {
+        // Find an element
         $operation = Operation::find($id);
         return view('admin.operations.show', ['title' => 'Voir une opération', 'operation' => $operation]);
     }
@@ -77,6 +79,7 @@ class OperationController extends Controller
      */
     public function edit(string $id)
     {
+        // Find an element
         $operation = Operation::find($id);
         return view('admin.operations.edit', ['title' => 'Modifier une opération', 'operation' => $operation]);
     }
@@ -88,7 +91,6 @@ class OperationController extends Controller
     {
         // Rechercher un element
         $operation = Operation::find($id);
-
         // Variables d'etats à envoyer par la fonction redirect
         $state = "";
         $msg = "";
@@ -106,7 +108,6 @@ class OperationController extends Controller
             $state = "ko";
             $msg = "Elément non mise à jour !";
         }
-
         // Redirection vers la view index du dossier opérations
         return redirect()->route('operations.index')->with('state', $state)->with('msg', $msg);
     }
@@ -119,20 +120,21 @@ class OperationController extends Controller
         // Rechercher un element
         $record = Operation::find($id);
         // Ajouter un element a la table deleted_{table}
-        $item = new Operation;
+        $item = new DeletedOperation;
         $item->name = $record->name;
         $item->save();
         // Variables d'etats à envoyer par la fonction redirect
         $state = "";
         $msg = "";
         // Supprimer un element
-        dd($record);
         if ($record) {
             $record->delete();
             $state = "ok";
             $msg = "Element supprimé avec succès !";
+        } else {
+            $state = "ko";
+            $msg = "L'élément n'a pas pu être supprimé !";
         }
-
         // Redirection vers la view index du dossier opérations
         return redirect()->route('operations.index')->with('state', $state)->with('msg', $msg);
     }
