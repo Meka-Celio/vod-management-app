@@ -7,7 +7,7 @@
 <hr>
 <!-- /content -->
 
-<p><a href="{{ route('operations.create') }}" class="btn btn-success">Ajouter une opération</a></p>
+<p><a href="{{ route('status.create') }}" class="btn btn-success">Ajouter un status</a></p>
 
 @if ($state === 'ok')
 <div class="alert bg-vod-success">
@@ -20,10 +20,10 @@
 @else
 @endif
 
-<!-- Operations table -->
+<!-- usertypes table -->
 <div class="card shadow mb-4">
     <div class="card-header">
-        <h6 class="text-warning">Les opérations</h6>
+        <h6 class="text-warning">Les Status</h6>
     </div>
     <div class="card-body">
         <div class="table">
@@ -31,39 +31,39 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Noms Opérations</th>
-                        <th>Date création</th>
-                        <th>Modifié le</th>
-                        <th colspan="3">Action</th>
+                        <th>Status</th>
+                        <th>Code</th>
+                        <th>Créé le</th>
+                        <th>Date de modification</th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($operations as $ope)
+                    @foreach ($status as $etat)
                     <tr>
-
                         <td>
-                            {{ $ope->id }}
+                            {{ $etat->id }}
                         </td>
                         <td>
-                            {{ $ope->name }}
+                            {{ $etat->name }}
                         </td>
                         <td>
-                            {{ $ope->created_at }}
+                            {{ $etat->code_status }}
                         </td>
                         <td>
-                            {{ $ope->updated_at }}
+                            {{ $etat->created_at }}
                         </td>
                         <td>
-                            <a href="{{ route('operations.show', $ope->id) }}" class="btn btn-info">Détail</a>
+                            {{ $etat->updated_at }}
                         </td>
                         <td>
-                            <a href="{{ route('operations.edit', $ope->id) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ route('status.edit', $etat->id) }}">Modifier</a>
                         </td>
                         <td>
-                            <form action="{{ route('operations.destroy', $ope->id) }}" method="post">
+                            <form action="{{ route('status.destroy', $etat->id) }}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="submit" class="delete_item btn btn-danger" data-id="{{ $ope->id }}">Supprimer</button>
+                                <button type="submit" class="delete_item" data-id="{{ $etat->id }}">Supprimer</button>
                             </form>
                         </td>
                     </tr>
@@ -85,7 +85,5 @@
         </div>
     </div>
 </div>
-<!-- / operations tables -->
-
-
+<!-- / usertypes tables -->
 @endsection

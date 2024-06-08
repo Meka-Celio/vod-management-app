@@ -27,7 +27,7 @@ class OperationController extends Controller
             $msg = Session::get('msg');
         }
         // Return the 
-        return view('admin.operations.index', ['operations' => $operations, 'title' => 'Toutes les opérations', 'state' => $state, 'msg' => $msg]);
+        return view('dashboard.operations.index', ['pagetitle' => 'Toutes les opérations', 'operations' => $operations, 'title' => 'Toutes les opérations', 'state' => $state, 'msg' => $msg]);
     }
 
     /**
@@ -36,7 +36,7 @@ class OperationController extends Controller
     public function create()
     {
         // Go to create element page
-        return view('admin.operations.create', ['title' => 'Ajout d\'une opération']);
+        return view('dashboard.operations.create', ['title' => 'Ajout d\'une opération', 'pagetitle' => 'Ajout d\'une opération']);
     }
 
     /**
@@ -71,7 +71,7 @@ class OperationController extends Controller
     {
         // Find an element
         $operation = Operation::find($id);
-        return view('admin.operations.show', ['title' => 'Voir une opération', 'operation' => $operation]);
+        return view('dashboard.operations.show', ['title' => 'Voir une opération', 'operation' => $operation]);
     }
 
     /**
@@ -81,7 +81,7 @@ class OperationController extends Controller
     {
         // Find an element
         $operation = Operation::find($id);
-        return view('admin.operations.edit', ['title' => 'Modifier une opération', 'operation' => $operation]);
+        return view('dashboard.operations.edit', ['title' => 'Modifier une opération', 'pagetitle' => 'Modifier une opération', 'operation' => $operation]);
     }
 
     /**

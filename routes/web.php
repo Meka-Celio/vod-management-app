@@ -21,7 +21,7 @@ Route::get('/', function () {
 //     return view('back/index', ['title' => "Accueil"]);
 // });
 
-Route::get('back', [DashController::class, 'index']);
+Route::get('back', [DashController::class, 'index'])->name('dashboard');
 
 /**
  * Les routes pour les Operations

@@ -26,7 +26,7 @@ class UsertypeController extends Controller
             $msg = Session::get('msg');
         }
         // Return the 
-        return view('admin.usertypes.index', ['usertypes' => $usertypes, 'title' => 'Tous les usertypes', 'state' => $state, 'msg' => $msg]);
+        return view('dashboard.usertypes.index', ['usertypes' => $usertypes, 'title' => 'Tous les usertypes', 'pagetitle' => 'Tous les usertypes', 'state' => $state, 'msg' => $msg]);
     }
 
     /**
@@ -35,7 +35,7 @@ class UsertypeController extends Controller
     public function create()
     {
         // Go to create element page
-        return view('admin.usertypes.create', ['title' => 'Ajout d\'un usertype']);
+        return view('dashboard.usertypes.create', ['title' => 'Ajout d\'un usertype', 'pagetitle' => 'Ajouter un type user']);
     }
 
     /**
@@ -73,7 +73,7 @@ class UsertypeController extends Controller
     {
         // Find an element
         $usertype = Usertype::find($id);
-        return view('admin.usertypes.show', ['title' => 'Voir un usertype', 'usertype' => $usertype]);
+        return view('dashboard.usertypes.show', ['title' => 'Voir un usertype', 'usertype' => $usertype]);
     }
 
     /**
@@ -83,7 +83,7 @@ class UsertypeController extends Controller
     {
         // Find an element
         $usertype = Usertype::find($id);
-        return view('admin.usertypes.edit', ['title' => 'Modifier un usertype', 'usertype' => $usertype]);
+        return view('dashboard.usertypes.edit', ['title' => 'Modifier un usertype', 'pagetitle' => 'Modifier un usertype', 'usertype' => $usertype]);
     }
 
     /**

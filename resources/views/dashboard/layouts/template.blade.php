@@ -13,28 +13,45 @@
     <!-- Page wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <aside>
+        <aside class="col-md-2 bg-vod-warning">
+            <div class="branding">
+                <img src="{{ asset('dashboard/img/ntechnica-square-favicon.png') }}" alt="">
+            </div>
             <ul class="list-group">
+                <hr class="list-group-divider">
+                <li class="list-group-item">
+                    <a href="{{ route('dashboard') }}" class="list-group-item-link">Dashboard</a>
+                </li>
+                <hr class="list-group-divider">
+                <div class="list-group-header">Opérations</div>
                 <li class="list-group-item">
                     <a href="{{ route('operations.index') }}" class="list-group-item-link">Opérations</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="{{ route('usertypes.index') }}" class="list-group-item-link">Usertypes</a>
                 </li>
                 <li class="list-group-item">
                     <a href="{{ route('status.index') }}" class="list-group-item-link">Status</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ route('movies.index') }}" class="list-group-item-link">Movies</a>
-                </li>
-                <li class="list-group-item">
                     <a href="{{ route('subscriptions.index') }}" class="list-group-item-link">Subscriptions</a>
                 </li>
+                <hr class="list-group-divider">
+                <div class="list-group-header">Users</div>
+                <li class="list-group-item">
+                    <a href="{{ route('usertypes.index') }}" class="list-group-item-link">Usertypes</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ route('users.index') }}" class="list-group-item-link">Users</a>
+                </li>
+                <hr class="list-group-divider">
+                <div class="list-group-header">Movies</div>
+                <li class="list-group-item">
+                    <a href="{{ route('movies.index') }}" class="list-group-item-link">Movies</a>
+                </li>
+
             </ul>
         </aside>
         <!-- end sidebar -->
         <!-- Page content -->
-        <main>
+        <main class="col-md-10">
             <div class="container-fluid">
                 @yield('content')
             </div>
