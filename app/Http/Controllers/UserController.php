@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -11,7 +13,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        $state = "";
+        $msg = "";
+
+        // Variales d'etats reçu des différentes fonctions
+        if (Session::get('state')) {
+            $state = Session::get('state');
+            $msg = Session::get('msg');
+        }
+        // Return the 
+        return view('dashboard.users.index', ['users' => $users, 'title' => 'Tous les Utilisateurs', 'pagetitle' => 'Tous les Utilisateurs', 'state' => $state, 'msg' => $msg]);
     }
 
     /**

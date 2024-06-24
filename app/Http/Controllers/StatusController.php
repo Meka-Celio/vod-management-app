@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DeletedStatus;
 use App\Models\Status;
+use App\Validation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -49,27 +50,27 @@ class StatusController extends Controller
         $state = "";
         $msg = "";
         $good = 0;
-        // if input != ""
-        if ($request->input('name') != "") {
-            $status->name = $request->input('name');
+
+        // Validation
+        $validate = Validation::validate($request->input('name'), 'string');
+
+        if ($validate[0]) {
             $status->name = Str::lower($status->name);
-            $good += 1;
+            $good += $validate[0];
         } else {
             // Notification d'état
             $state = "ko";
             $msg .= "<p>Echec lors de l'ajout, le nom ne doit pas être vide !</p>";
         }
+
         // Vérification code_status
-        $status->code_status = $request->input('code_status');
-        $vCode = $status->code_status * (-1);
-        // var_dump($status->code_status);
-        // die();
-        if (!$vCode) {
-            // Notification d'état
+        $validate2 = Validation::validate($request->input('code_status'), 'number');
+        if ($validate2[0]) {
+            $status->code_status = $request->input('code_status');
+            $good += 1;
+        } else {
             $state = "ko";
             $msg .= "<p>Echec lors de l'ajout, le code doit être un nombre !</p>";
-        } else {
-            $good += 1;
         }
 
         if ($good == 2) {
@@ -79,7 +80,6 @@ class StatusController extends Controller
             $state = "ok";
             $msg = "Element ajouté avec succès !";
         }
-
 
         // Redirection vers la view index du dossier opérations
         return redirect()->route('status.index')->with('state', $state)->with('msg', $msg);

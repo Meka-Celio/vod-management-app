@@ -7,7 +7,7 @@
 <hr>
 <!-- /content -->
 
-<p><a href="{{ route('usertypes.create') }}" class="btn btn-success">Ajouter un usertype</a></p>
+<p><a href="{{ route('subscriptions.create') }}" class="btn btn-success">Ajouter un abonnement</a></p>
 
 @if ($state === 'ok')
 <div class="alert bg-vod-success">
@@ -23,7 +23,7 @@
 <!-- usertypes table -->
 <div class="card shadow mb-4">
     <div class="card-header">
-        <h6 class="text-warning">Les usertypes</h6>
+        <h6 class="text-warning">Les Abonnements</h6>
     </div>
     <div class="card-body">
         <div class="table">
@@ -31,35 +31,43 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nom du usertype</th>
+                        <th>Type Abonnement</th>
+                        <th>Prix</th>
+                        <th>Durée abonnement</th>
                         <th>Créé le</th>
-                        <th>Date de modification</th>
-                        <th colspan="2">Action</th>
+                        <th>Date Modification</th>
+                        <th colspan="3">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($usertypes as $ustype)
+                    @foreach ($subscriptions as $sub)
                     <tr>
                         <td>
-                            {{ $ustype->id }}
+                            {{ $sub->id }}
                         </td>
                         <td>
-                            {{ $ustype->name }}
+                            {{ $sub->name }}
                         </td>
                         <td>
-                            {{ $ustype->created_at }}
+                            {{ $sub->price }} Dh
                         </td>
                         <td>
-                            {{ $ustype->updated_at }}
+                            {{ $sub->duration }} Mois
                         </td>
                         <td>
-                            <a href="{{ route('usertypes.edit', $ustype->id) }}" class="btn btn-warning">Modifier</a>
+                            {{ $sub->created_at }}
                         </td>
                         <td>
-                            <form action="{{ route('usertypes.destroy', $ustype->id) }}" method="post">
+                            {{ $sub->updated_at }}
+                        </td>
+                        <td>
+                            <a href="{{ route('subscriptions.edit', $sub->id) }}" class="btn btn-warning">Modifier</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('subscriptions.destroy', $sub->id) }}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="submit" class="delete_item btn btn-danger" data-id="{{ $ustype->id }}">Supprimer</button>
+                                <button type="submit" class="delete_item btn btn-danger" data-id="{{ $sub->id }}">Supprimer</button>
                             </form>
                         </td>
                     </tr>

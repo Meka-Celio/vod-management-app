@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Operation;
 use App\Models\Status;
+use App\Models\Subscription;
 use App\Models\Usertype;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,14 @@ class DashController extends Controller
         $operations = Operation::all();
         $usertypes = Usertype::all();
         $status = Status::all();
+        $subscriptions = Subscription::all();
         // Go to Dashboard page
-        return view('dashboard.index', ['title' => 'Dashboard', 'pagetitle' => 'Dashboard', 'operations' => $operations, 'usertypes' => $usertypes, 'status' => $status]);
+        return view('dashboard.index', [
+            'title' => 'Dashboard', 'pagetitle' => 'Dashboard',
+            'operations' => $operations,
+            'usertypes' => $usertypes,
+            'status' => $status,
+            'subscriptions' => $subscriptions
+        ]);
     }
 }

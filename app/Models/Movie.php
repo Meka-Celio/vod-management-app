@@ -17,6 +17,8 @@ class Movie extends Model
         'release_date',
         'runtime',
         'selling_price',
-        'rental_price'
+        'rental_price',
+        'cover',
+        'banner'
     ];
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Operation;
 use App\Models\DeletedOperation;
+use App\Validation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -46,13 +47,17 @@ class OperationController extends Controller
     {
         // Create new element
         $operation = new Operation;
+
         // Variables d'etats à envoyer par la fonction redirect
         $state = "";
         $msg = "";
-        // if input != ""
-        if ($request->input('name') != "") {
-            $operation->name = $request->input('name');
-            $operation->name = Str::lower($operation->name);
+
+        // Validation des données du formulaire
+        $validate = Validation::validate($request->input('name'), 'string');
+
+        // Si valide
+        if ($validate[0]) {
+            $operation->name = Str::lower($request->input('name'));
             $operation->save();
             $state = "ok";
             $msg = "Element ajouté avec succès !";
@@ -60,6 +65,7 @@ class OperationController extends Controller
             $state = "ko";
             $msg = "Echec lors de l'ajout, le nom ne doit pas être vide !";
         }
+
         // Redirection vers la view index du dossier opérations
         return redirect()->route('operations.index')->with('state', $state)->with('msg', $msg);
     }
@@ -94,10 +100,13 @@ class OperationController extends Controller
         // Variables d'etats à envoyer par la fonction redirect
         $state = "";
         $msg = "";
-        // If 'name != ""
-        if ($request->input('name') != "") {
-            $operation->name = $request->input('name');
-            $operation->name = Str::lower($operation->name);
+
+        // Validation des données du formulaire
+        $validate = Validation::validate($request->input('name'), 'string');
+
+        if ($validate[0]) {
+            // Affectation
+            $operation->name = Str::lower($request->input('name'));
             // Modifier un element
             $operation->save();
             // Update state & msg
@@ -117,15 +126,18 @@ class OperationController extends Controller
      */
     public function destroy(string $id)
     {
+        // Variables d'etats à envoyer par la fonction redirect
+        $state = "";
+        $msg = "";
+
         // Rechercher un element
         $record = Operation::find($id);
+
         // Ajouter un element a la table deleted_{table}
         $item = new DeletedOperation;
         $item->name = $record->name;
         $item->save();
-        // Variables d'etats à envoyer par la fonction redirect
-        $state = "";
-        $msg = "";
+
         // Supprimer un element
         if ($record) {
             $record->delete();

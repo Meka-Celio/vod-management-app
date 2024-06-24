@@ -57,13 +57,13 @@
                             {{ $etat->updated_at }}
                         </td>
                         <td>
-                            <a href="{{ route('status.edit', $etat->id) }}">Modifier</a>
+                            <a href="{{ route('status.edit', $etat->id) }}" class="btn btn-warning">Modifier</a>
                         </td>
                         <td>
                             <form action="{{ route('status.destroy', $etat->id) }}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="submit" class="delete_item" data-id="{{ $etat->id }}">Supprimer</button>
+                                <button type="submit" class="delete_item btn btn-danger" data-id="{{ $etat->id }}">Supprimer</button>
                             </form>
                         </td>
                     </tr>

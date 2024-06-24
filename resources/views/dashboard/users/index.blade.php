@@ -7,7 +7,7 @@
 <hr>
 <!-- /content -->
 
-<p><a href="{{ route('usertypes.create') }}" class="btn btn-success">Ajouter un usertype</a></p>
+<p><a href="{{ route('users.create') }}" class="btn btn-success">Ajouter un utilisateur</a></p>
 
 @if ($state === 'ok')
 <div class="alert bg-vod-success">
@@ -20,10 +20,10 @@
 @else
 @endif
 
-<!-- usertypes table -->
+<!-- users table -->
 <div class="card shadow mb-4">
     <div class="card-header">
-        <h6 class="text-warning">Les usertypes</h6>
+        <h6 class="text-warning">Les users</h6>
     </div>
     <div class="card-body">
         <div class="table">
@@ -31,35 +31,39 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nom du usertype</th>
+                        <th>Username</th>
+                        <th>Type d'utilisateur</th>
                         <th>Créé le</th>
                         <th>Date de modification</th>
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($usertypes as $ustype)
+                    @foreach ($users as $user)
                     <tr>
                         <td>
-                            {{ $ustype->id }}
+                            {{ $user->id }}
                         </td>
                         <td>
-                            {{ $ustype->name }}
+                            {{ $user->name }}
                         </td>
                         <td>
-                            {{ $ustype->created_at }}
+                            {{ $user->usertype_id }}
                         </td>
                         <td>
-                            {{ $ustype->updated_at }}
+                            {{ $user->created_at }}
                         </td>
                         <td>
-                            <a href="{{ route('usertypes.edit', $ustype->id) }}" class="btn btn-warning">Modifier</a>
+                            {{ $user->updated_at }}
                         </td>
                         <td>
-                            <form action="{{ route('usertypes.destroy', $ustype->id) }}" method="post">
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Modifier</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="submit" class="delete_item btn btn-danger" data-id="{{ $ustype->id }}">Supprimer</button>
+                                <button type="submit" class="delete_item btn btn-danger" data-id="{{ $user->id }}">Supprimer</button>
                             </form>
                         </td>
                     </tr>
@@ -81,5 +85,5 @@
         </div>
     </div>
 </div>
-<!-- / usertypes tables -->
+<!-- / users tables -->
 @endsection

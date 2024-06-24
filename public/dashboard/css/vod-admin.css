@@ -3,15 +3,18 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+html,
 body {
-    height: 100vh;
+    height: 100%;
+}
+body {
+    /* height: 100vh; */
     overflow: hidden;
     text-align: left;
     font-size: 1rem;
     line-height: 1.5;
     font-weight: 400;
-    color: #858796;
+    color: #bfc2dd;
 }
 
 /* ====================================================== */
@@ -35,6 +38,21 @@ body {
 /* ------------ / Color -------------------- */
 
 /* ----------- Background-color ---------------------- */
+.bg-vod-dark {
+    background-image: linear-gradient(180deg, #2f1e48 10%, #2b1244 100%);
+    background-size: cover;
+}
+
+.bg-vod-shadow {
+    background-image: linear-gradient(180deg, #620193 10%, #351555 100%);
+    background-size: cover;
+}
+
+.bg-vod-dark-mode {
+    background-image: linear-gradient(180deg, #382c3e 10%, #4f4e50 100%);
+    background-size: cover;
+}
+
 .bg-vod-warning {
     background-color: #f6c23e;
     background-image: -webkit-gradient(
@@ -83,12 +101,12 @@ body {
 }
 
 .list-group-item a {
-    color: #753e1b;
+    color: #e69867;
     text-decoration: none;
     transition: 0.6s;
 }
 .list-group-item a:hover {
-    color: #0e85b490;
+    color: #fff;
 }
 
 .list-group-header {
@@ -98,7 +116,7 @@ body {
 /* ----------- / List-group ---------------------- */
 
 .shadow {
-    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(93, 72, 123, 0.73) !important;
 }
 
 .mb-2 {
@@ -120,9 +138,8 @@ body {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: #2d073f;
     background-clip: border-box;
-    border: 1px solid #e3e6f0;
     border-radius: 0.35rem;
 }
 .card-header:first-child {
@@ -154,9 +171,21 @@ body {
 .table-database td {
     padding: 0.75rem;
     vertical-align: top;
-    border: 1px solid #e3e6f0;
+}
+.table-database thead th {
+    background-color: #2d073f;
+    color: #fff;
+}
+.table-database tbody tr {
+    background-color: #2d073f;
+}
+.table-database tbody td {
+    color: #f6c23e;
 }
 
+.shadow {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(94, 95, 121, 0.73) !important;
+}
 /* ---------- Btn ------------------------- */
 .btn {
     display: inline-block;
@@ -243,5 +272,4 @@ aside {
 
 main {
     padding: 30px;
-    background-color: #f8f9fc;
 }
