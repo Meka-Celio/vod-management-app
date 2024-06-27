@@ -7,7 +7,7 @@
 <hr>
 <!-- /content -->
 
-<form action="{{ route('subscriptions.update', $subscription->id) }}" method="post" class="col-md-4">
+<form action="{{ route('subscriptions.update', $subscription->id) }}" method="post" class="col-md-4 form">
     @csrf
     @method('PUT')
     <input type="hidden" name="id" id="" value="{{ $subscription->id }}">

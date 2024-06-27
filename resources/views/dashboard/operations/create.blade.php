@@ -7,7 +7,7 @@
 <hr>
 <!-- /content -->
 
-<form action="{{ route('operations.store') }}" method="post" class="col-md-4">
+<form action="{{ route('operations.store') }}" method="post" class="col-md-4 form">
     @csrf
     <div class="form-group">
         <input type="text" name="name" id="name" placeholder="Nom de l'opération" require class="form-control">

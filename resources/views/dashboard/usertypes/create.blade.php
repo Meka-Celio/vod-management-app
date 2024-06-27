@@ -7,10 +7,12 @@
 <hr>
 <!-- /content -->
 
-<form action="{{ route('usertypes.store') }}" method="post" class="col-md-4">
+<form action="{{ route('usertypes.store') }}" method="post" class="col-md-4 form">
     @csrf
     <div class="form-group">
-        <input type="text" name="name" id="name" placeholder="Type utilisateur" require class="form-control">
+        <label for="">Nouveau type d'utilisateur
+            <input type="text" name="name" id="name" placeholder="Type utilisateur" require class="form-control">
+        </label>
     </div>
     <div class="form-group">
         <button class="btn btn-success">Ajouter</button>

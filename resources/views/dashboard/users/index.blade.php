@@ -32,10 +32,12 @@
                     <tr>
                         <th>#</th>
                         <th>Username</th>
+                        <th>Email</th>
+                        <th>Id Type user</th>
                         <th>Type d'utilisateur</th>
                         <th>Créé le</th>
                         <th>Date de modification</th>
-                        <th colspan="2">Action</th>
+                        <th colspan="3">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,13 +50,26 @@
                             {{ $user->name }}
                         </td>
                         <td>
+                            {{ $user->email }}
+                        </td>
+                        <td>
                             {{ $user->usertype_id }}
+                        </td>
+                        <td>
+                            @foreach ($usertypes as $utype)
+                            @if ($user->usertype_id == $utype->id)
+                            {{ $utype->name }}
+                            @endif
+                            @endforeach
                         </td>
                         <td>
                             {{ $user->created_at }}
                         </td>
                         <td>
                             {{ $user->updated_at }}
+                        </td>
+                        <td>
+                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-info">Voir</a>
                         </td>
                         <td>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Modifier</a>

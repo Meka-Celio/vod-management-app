@@ -13,6 +13,11 @@
 <body>
     <section id="loginPage">
         <div class="container">
+            @if (Session::get('msg') != "")
+            <div class="alert alert-danger">
+                {{ Session::get('msg') }}
+            </div>
+            @endif
             <div class="block">
                 <div class="head-block">
                     <div class="branding">
@@ -21,15 +26,16 @@
                 </div>
                 <h1>VODAPP - Gestion de VOD</h1>
                 <div class="body-block">
-                    <form action="" method="post" class="">
+                    <form action="{{ route('dashboard') }}" method="post" class="">
+                        @csrf
                         <label for="">Username
-                            <input type="text" name="" id="">
+                            <input type="text" name="username" id="">
                         </label>
                         <label for="">Password
-                            <input type="password" name="" id="">
+                            <input type="password" name="password" id="">
                         </label>
                         <label for="">
-                            <input type="submit" value="Login" class="btn btn-info">
+                            <input type="submit" name="submit" value="Login" class="btn btn-info">
                         </label>
                     </form>
                 </div>

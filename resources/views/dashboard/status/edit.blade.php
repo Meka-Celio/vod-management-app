@@ -7,7 +7,7 @@
 <hr>
 <!-- /content -->
 
-<form action="{{ route('status.update', $status->id) }}" method="post" class="col-md-4">
+<form action="{{ route('status.update', $status->id) }}" method="post" class="col-md-4 form">
     @csrf
     @method('PUT')
     <input type="hidden" name="id" value="{{ $status->id }}">

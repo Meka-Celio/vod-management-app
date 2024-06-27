@@ -118,6 +118,7 @@ body {
 
 .card {
     background-color: #360e44;
+    color: #dee1b5;
 }
 
 .card-header:first-child {
@@ -205,24 +206,21 @@ body {
 /* ------------ / Btn ---------------------- */
 
 /* --------- Forms ------------------------ */
+.form {
+    background-color: #360e44;
+    padding: 40px;
+    border-radius: 4%;
+    box-shadow: 1px 0 15px 2px #410f62;
+    color: #e69867;
+}
+
 .form-group {
     margin-bottom: 1rem;
 }
 .form-control {
-    display: block;
-    width: 100%;
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #6e707e;
-    background-color: #fff;
-    background-clip: padding-box;
+    background-color: #704b7d;
     border: 1px solid #d1d3e2;
-    border-radius: 0.35rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
-        -webkit-box-shadow 0.15s ease-in-out;
+    color: #e69867;
 }
 /* ------------ / Forms ------------------- */
 /* End classes */
@@ -258,4 +256,24 @@ main {
 #ads img {
     height: 100%;
     width: 100%;
+}
+
+/* -------------------------- */
+.col-md-2.user .card {
+    width: 100%;
+}
+
+.user-profil {
+    width: 100%;
+}
+
+.userface {
+    text-align: center;
+}
+
+.userface img {
+    width: 85%;
+}
+.usertext {
+    padding: 5px 15px;
 }

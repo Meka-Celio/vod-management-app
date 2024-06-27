@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
+use App\Models\User;
+use App\NumAccount;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -27,7 +30,25 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userid = $request->input('user_id');
+        $accounts = Account::all();
+
+        if ($accounts) {
+            foreach ($accounts as $ac) {
+                if ($userid == $ac->user_id) {
+                    // Redirection vers la view 
+                    return redirect()->route('users.show', $userid)->with('state', 'ko')->with('msg', 'Un compte existe deja pour cet user !');
+                } else {
+                    $account = new Account();
+                    $num_account = NumAccount::generateNumAccount($userid);
+                    $account->num_account = $num_account;
+                    $account->user_id = $userid;
+                    $account->save();
+                    // Redirection vers la view 
+                    return redirect()->route('users.show', $userid)->with('state', 'ok')->with('msg', 'Compte ajouté avec succès !');
+                }
+            }
+        }
     }
 
     /**

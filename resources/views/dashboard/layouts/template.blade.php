@@ -46,8 +46,10 @@
                 <li class="list-group-item">
                     <a href="{{ route('users.index') }}" class="list-group-item-link">Users</a>
                 </li>
-
-
+                <hr class="list-group-divider">
+                <li class="list-group-item">
+                    <a href="{{ route('login') }}" class="list-group-item-link">Déconnexion</a>
+                </li>
             </ul>
         </aside>
         <!-- end sidebar -->

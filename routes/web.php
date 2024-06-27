@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('login');
 
 // Route::get('/back', function () {
 //     return view('back/index', ['title' => "Accueil"]);
 // });
 
 Route::get('back', [DashController::class, 'index'])->name('dashboard');
+Route::post('back', [DashController::class, 'login'])->name('dashboard');
 
 /**
  * Les routes pour les Operations

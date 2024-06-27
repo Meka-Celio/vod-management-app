@@ -7,7 +7,7 @@
 <hr>
 <!-- /content -->
 
-<form action="{{ route('status.store') }}" method="post" class="col-md-4">
+<form action="{{ route('status.store') }}" method="post" class="col-md-4 form">
     @csrf
     <div class="form-group">
         <input type="text" name="name" id="name" placeholder="Status" require class="form-control">
