@@ -31,10 +31,13 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>moviename</th>
-                        <th>Créé le</th>
-                        <th>Date de modification</th>
-                        <th colspan="2">Action</th>
+                        <th>Affiche</th>
+                        <th>Movie name code</th>
+                        <th>Movie Name</th>
+                        <th>Sortie le</th>
+                        <th>Durée du film</th>
+                        <th>Age recommandé</th>
+                        <th colspan="3">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,13 +47,25 @@
                             {{ $movie->id }}
                         </td>
                         <td>
+                            <img src="{{ asset($movie->cover) }}" alt="{{ $movie->name }}" width="70px">
+                        </td>
+                        <td>
                             {{ $movie->name }}
                         </td>
                         <td>
-                            {{ $movie->created_at }}
+                            {{ $movie->display_name }}
                         </td>
                         <td>
-                            {{ $movie->updated_at }}
+                            {{ $movie->release_date }}
+                        </td>
+                        <td>
+                            {{ $movie->runtime }} min
+                        </td>
+                        <td>
+                            PG-{{ $movie->rating }}
+                        </td>
+                        <td>
+                            <a href="{{ route('movies.show', $movie->id) }}" class="btn btn-info">voir</a>
                         </td>
                         <td>
                             <a href="{{ route('movies.edit', $movie->id) }}" class="btn btn-warning">Modifier</a>

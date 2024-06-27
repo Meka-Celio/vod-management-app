@@ -75,6 +75,8 @@ Route::resource('movies', MovieController::class)->names([
     'update' => 'movies.update',
     'show' => 'movies.show'
 ]);
+Route::get('movies/{movie}/upload', [MovieController::class, 'upload'])->name('movies.upload');
+Route::put('movies/{movie}/upload', [MovieController::class, 'upload'])->name('movies.upload');
 
 /**
  * Les routes pour les Usertypes
@@ -133,13 +135,13 @@ Route::resource('purchasemovies', AccountPurchaseMovieController::class)->names(
  */
 Route::resource('rentalmovies', AccountRentalMovieController::class)->names([
     'index' => 'rentalmovies.index',
-    'create' => 'rentalmovies.create',
     'store' => 'rentalmovies.store',
     'edit' => 'rentalmovies.edit',
     'destroy' => 'rentalmovies.destroy',
     'update' => 'rentalmovies.update',
     'show' => 'rentalmovies.show'
 ]);
+Route::get('rentalmovies.create/{account}', [AccountRentalMovieController::class, 'create'])->name('rentalmovies.create');
 
 /**
  * Les routes pour les Accounts Subscriptions

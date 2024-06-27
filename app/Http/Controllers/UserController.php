@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\DeletedUser;
 use App\Models\User;
 use App\Models\Usertype;
 use App\Validation;
@@ -215,6 +216,27 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Rechercher un element
+        $record = User::find($id);
+        // Ajouter un element a la table deleted_{table}
+        $item = new DeletedUser();
+        $item->name = $record->name;
+        $item->email = $record->email;
+        $item->password = $record->password;
+        $item->save();
+        // Variables d'etats à envoyer par la fonction redirect
+        $state = "";
+        $msg = "";
+        // Supprimer un element
+        if ($record) {
+            $record->delete();
+            $state = "ok";
+            $msg = "Element supprimé avec succès !";
+        } else {
+            $state = "ko";
+            $msg = "L'élément n'a pas pu être supprimé !";
+        }
+        // Redirection vers la view index du dossier opérations
+        return redirect()->route('users.index')->with('state', $state)->with('msg', $msg);
     }
 }

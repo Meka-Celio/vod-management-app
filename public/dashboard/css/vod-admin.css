@@ -7,6 +7,7 @@ html,
 body {
     height: 100%;
     width: 100%;
+    background-color: #23152b;
 }
 body {
     text-align: left;
@@ -126,6 +127,7 @@ body {
 }
 .card-header h6 {
     font-weight: bold;
+    font-size: 1.75rem;
 }
 .card-body {
     -webkit-box-flex: 1;
@@ -223,6 +225,16 @@ body {
     color: #e69867;
 }
 /* ------------ / Forms ------------------- */
+
+/* ------- Positions --------------------- */
+.pos-rel {
+    position: relative;
+}
+
+.pos-ab {
+    position: absolute;
+}
+
 /* End classes */
 /* ====================================================== */
 
@@ -276,4 +288,15 @@ main {
 }
 .usertext {
     padding: 5px 15px;
+}
+/* ----- Movies ---------- */
+.banner-movie {
+    width: 100%;
+}
+.banner-movie img {
+    width: 100%;
+}
+
+.movie-detail.pos-rel {
+    top: 190px;
 }

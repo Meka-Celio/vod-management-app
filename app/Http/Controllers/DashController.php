@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use App\Models\Operation;
 use App\Models\Status;
 use App\Models\Subscription;
@@ -19,6 +20,7 @@ class DashController extends Controller
         $status = Status::all();
         $subscriptions = Subscription::all();
         $users = User::all();
+        $movies = Movie::all();
         // Go to Dashboard page
         return view('dashboard.index', [
             'title' => 'Dashboard', 'pagetitle' => 'Dashboard',
@@ -26,7 +28,8 @@ class DashController extends Controller
             'usertypes'     => $usertypes,
             'status'        => $status,
             'subscriptions' => $subscriptions,
-            'users'         => $users
+            'users'         => $users,
+            'movies'        => $movies
         ]);
     }
 

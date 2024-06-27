@@ -54,4 +54,13 @@ class Validation
         }
         return [$good, $errorMsg];
     }
+
+    public static function generateEndDate(string $start_date)
+    {
+
+        $time_input = strtotime($start_date);
+        $date_input = getDate($time_input);
+
+        print_r($date_input);
+    }
 }

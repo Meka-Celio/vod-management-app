@@ -27,7 +27,13 @@ class StatusController extends Controller
             $msg = Session::get('msg');
         }
         // Return the 
-        return view('dashboard.status.index', ['status' => $status, 'title' => 'Tous les status', 'pagetitle' => 'Tous les status de souscription abonnement', 'state' => $state, 'msg' => $msg]);
+        return view('dashboard.status.index', [
+            'status' => $status,
+            'title' => 'Tous les status',
+            'pagetitle' => 'Tous les status de souscription abonnement',
+            'state' => $state,
+            'msg' => $msg
+        ]);
     }
 
     /**

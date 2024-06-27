@@ -75,6 +75,9 @@
         <div class="card bg-vod-dark-mode shadow mb-4">
             <div class="card-header">
                 <h6 class="text-warning">Mes films loués</h6>
+                @if (isset($account->num_account))
+                <a href="{{ route('rentalmovies.create', $account->id) }}" class="btn btn-info">Ajouter une location</a>
+                @endif
             </div>
             @if (!isset($account->num_account))
             <div class="card-body">
@@ -82,19 +85,26 @@
             </div>
             @else
             <div class="card-body">
+                @if (!isset($account_rental->id))
+                <p>Ce compte n'a pas effectué de location.</p>
+                @else
                 <div class="table">
                     <table class="table-database">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nom du usertype</th>
-                                <th>Créé le</th>
-                                <th>Date de modification</th>
+                                <th>Nom du film</th>
+                                <th>Début location</th>
+                                <th>Fin de location</th>
                                 <th colspan="2">Action</th>
                             </tr>
                         </thead>
+                        <tbody>
+
+                        </tbody>
                     </table>
                 </div>
+                @endif
             </div>
             @endif
         </div>
@@ -122,7 +132,7 @@
     <div class="col-md-8">
         <div class="card bg-vod-dark-mode shadow mb-4">
             <div class="card-header">
-                <h6 class="text-warning">Mes films loués</h6>
+                <h6 class="text-warning">Mes souscriptions</h6>
             </div>
             @if (!isset($account->num_account))
             <div class="card-body">
@@ -130,19 +140,26 @@
             </div>
             @else
             <div class="card-body">
+                @if (!isset($account_subscription->id))
+                <p>Ce compte n'a souscrit à aucun abonnement.</p>
+                @else
                 <div class="table">
                     <table class="table-database">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nom du usertype</th>
-                                <th>Créé le</th>
-                                <th>Date de modification</th>
+                                <th>Nom du film</th>
+                                <th>Début location</th>
+                                <th>Fin de location</th>
                                 <th colspan="2">Action</th>
                             </tr>
                         </thead>
+                        <tbody>
+
+                        </tbody>
                     </table>
                 </div>
+                @endif
             </div>
             @endif
         </div>
